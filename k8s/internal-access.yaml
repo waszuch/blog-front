@@ -1,0 +1,15 @@
+# Alternatywna konfiguracja dla wewnętrznego dostępu
+# Jeśli LoadBalancer nie jest dostępny, użyj NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-frontend-nodeport
+spec:
+  selector:
+    app: blog-frontend
+  ports:
+  - port: 80
+    targetPort: 3000
+    nodePort: 30080  # Port na node (30000-32767)
+  type: NodePort
